@@ -1,25 +1,25 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
+import CategoryListPage from './components/category/list/CategoryListPage';
+import { Route, Routes } from 'react-router-dom';
+import DefaultLayout from './components/containers/default/DefaultLayout';
+import CategoryCreatPage from './components/category/create/CategoryCreatePage';
+ import CategoryEditForm from './components/category/edit/CategoryUpdateListPage';
+ function App() {
 
-function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+ <>
+      <Routes>
+        <Route path="/" element={<DefaultLayout/>}>
+          
+          <Route index element={<CategoryListPage />} />
+          <Route path="category/create" element={<CategoryCreatPage />} />
+          <Route path="category/edit/:id" element={<CategoryEditForm />} />
+                  </Route>
+      </Routes>
+      </>
+ 
   );
 }
 
