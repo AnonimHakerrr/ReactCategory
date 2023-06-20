@@ -6,6 +6,7 @@ import { APP_ENV } from "../../../env";
 import { ICategoryUpdateListPage } from "../edit/types";
 import { ICategoryCraete } from "../create/types";
 import CategoryEditForm from "../edit/CategoryUpdateListPage";
+import http from "../../../http";
  
 
 const CategoryListPage = () => {
@@ -19,7 +20,7 @@ const CategoryListPage = () => {
   ]);
  
     function handleDelete  (props: ICategoryItem):void {
-      axios.delete(`${APP_ENV.BASE_URL}api/category/${props.id}`)
+      http.delete(`${APP_ENV.BASE_URL}api/category/${props.id}`)
         .then(response => {
           console.log('category deleted');
           // оновити список користувачів
@@ -47,7 +48,7 @@ const CategoryListPage = () => {
     </tr>
   ));
   useEffect(() => {
-    axios.get(`${APP_ENV.BASE_URL}api/category`)
+    http.get(`${APP_ENV.BASE_URL}api/category`)
       .then(resp => {
         console.log("Сервак дав дані", resp); setList(resp.data.data);
       });

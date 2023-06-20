@@ -1,3 +1,5 @@
+ 
+
 export interface ICategoryItem {
 
     id: number,
@@ -5,3 +7,9 @@ export interface ICategoryItem {
     photo: string ,
     description: string
 } 
+export interface ICategoryList{
+    date:ICategoryItem[],
+    last_page:number,
+    total:number,
+    current_page:number
+}

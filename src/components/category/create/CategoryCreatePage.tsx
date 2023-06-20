@@ -7,6 +7,7 @@ import { useForm } from 'react-hook-form';
 import axios from "axios";
 import { APP_ENV } from "../../../env";
 import classNames from "classnames";
+import http from "../../../http";
 
 const CategoryCreatePage = () => {
   const navigator = useNavigate();
@@ -31,7 +32,7 @@ const CategoryCreatePage = () => {
   const onSubmitHandler = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setErrors({ name: "", description: "" });
-    axios
+    http
       .post(`${APP_ENV.BASE_URL}api/category`, dto, {
         headers: {
           "Content-Type": "multipart/form-data",
@@ -75,7 +76,7 @@ const CategoryCreatePage = () => {
         </div>
         <div className="mb-3">
           <label htmlFor="photo" className="form-label">  Photo </label>
-          <input type="file" className="form-control"   id="photo"name="photo" onChange={onImageChangeHandler} />
+          <input type="file" className="form-control" id="photo" name="photo" onChange={onImageChangeHandler} />
         </div>
         <div className="mb-3">
           <label htmlFor="description" className="form-label">
@@ -97,7 +98,7 @@ const CategoryCreatePage = () => {
         </div>
 
 
-        <button type="submit"  className="btn btn-primary">
+        <button type="submit" className="btn btn-primary">
           Додати
         </button>
       </form>
