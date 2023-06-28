@@ -47,7 +47,7 @@ const DefaultHeader = () => {
             {isAuth ? (
               <ul className="navbar-nav">
                 <li className="nav-item">
-                  <Link className="nav-link" aria-current="page" to="/profile">
+                  <Link className="nav-link" aria-current="page" to="/admin">
                     {user?.email}
                   </Link>
                 </li>

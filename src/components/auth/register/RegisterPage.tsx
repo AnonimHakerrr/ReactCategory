@@ -15,7 +15,7 @@ const LoginPage = () => {
     name:"",
     surname:"",
     image:null,
-    tel:0,
+    tel:38,
     email: "",
     password: "",
     password_confirmation :""
@@ -36,9 +36,9 @@ const LoginPage = () => {
 
   const onSubmitFormikData = async (values: IRegister) => {
     try {
-      const result = await http.post<IRegisterResult>("api/auth/login", values);
+      const result = await http.post<IRegisterResult>("api/auth/register", values);
       console.log("Success", result);
-      
+      navigator("/");
     } catch (error) {
       setMessage("Дані вказано не вірно");
     }
@@ -109,7 +109,7 @@ const LoginPage = () => {
             })}
             id="tel"
             name="tel"
-            value={"+38"+values.tel}
+            value= {values.tel} 
             onChange={handleChange}
           />  
           {errors.tel && touched.tel && (
@@ -152,6 +152,11 @@ const LoginPage = () => {
             <div className="invalid-feedback">{errors.email}</div>
           )}
         </div>
+
+
+
+
+
         <div className="mb-3">
           <label htmlFor="password" className="form-label">
             Пароль
@@ -179,8 +184,8 @@ const LoginPage = () => {
             className={classNames("form-control", {
               "is-invalid": errors.password_confirmation && touched.password_confirmation,
             })}
-            id="password"
-            name="password"
+            id="password_confirmation"
+            name="password_confirmation"
             value={values.password_confirmation}
             onChange={handleChange}
           />
