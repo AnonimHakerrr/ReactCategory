@@ -52,7 +52,7 @@ const CategoryEditForm= ()=>{
       .then(response => {
         console.log('User updated');
         // оновити інформацію про користувача
-        navigator("/");
+        navigator("/admin");
       })
       .catch(error => {
         console.log('Error updating user');

@@ -12,26 +12,34 @@ import HomePage from './components/home/HomePage';
 import CategoryCreatePage from './components/category/create/CategoryCreatePage';
 import AdminHomePage from './components/containers/admin/home/AdminHomePage';
 import AdminLayout from './components/containers/admin/container/AdminLayout';
+import ProductListPage from './components/product/ProductsListPage';
+import Loader from './components/comman/loader/Loader';
+import ProductCreatePage from './components/product/create/ProductCreatePage';
  
  function App() {
 
   return (
  <>     
+
+<Loader/>
+
       <Routes>
-          <Route path="/" element={<DefaultLayout />}>
-            <Route index element={<HomePage />} />
-            <Route path='login' element={<LoginPage/>}></Route>
+        <Route path="/" element={<DefaultLayout />}>
+          <Route index element={<HomePage />} />
+          <Route path='login' element={<LoginPage />}></Route>
+        </Route>
+        <Route path={"/admin"} element={<AdminLayout />}>
+           <Route index element={<AdminHomePage />} />
+          <Route path={"products"} element={<ProductListPage />} />
+          <Route path={"products/create"} element={<ProductCreatePage/>}/>
+          <Route path={"category"} >
+            <Route index element={<CategoryListPage />} />
+            <Route path={"edit/:id"} element={<CategoryEditForm />} />
+            <Route path={"create"} element={<CategoryCreatPage />} />
           </Route>
-          <Route path={"/admin"} element={<AdminLayout/>}>
-            <Route index element={<AdminHomePage/>}/>
-            <Route path={"category"}>
-            <Route path={"category/edit/:id"} />
-              <Route index element={<CategoryListPage />}/>
-              <Route path="create" element={<CategoryCreatePage />} />
-            </Route>
-          </Route>
-        </Routes>
-      </>
+        </Route>
+      </Routes>
+    </>
 
   );
 }

@@ -1,4 +1,25 @@
+import {useDispatch, useSelector} from "react-redux";
+import {Link, useNavigate} from "react-router-dom";
+import http from "../../../../http";
+import { AuthUserActionType } from "../../../auth/types";
+
+
 const AdminSidebar = () => {
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
+
+
+    const onClickLogout = (e: any) => {
+        e.preventDefault();
+        delete http.defaults.headers.common["Authorization"];
+        localStorage.removeItem("token");
+        dispatch({type:AuthUserActionType.LOGOUT_USER});
+        navigate("/");
+      }
+
+
+
+
     return (
         <>
             <div className="sidebar col-sm-4 col-md-3 col-lg-2 p-0">
@@ -10,17 +31,17 @@ const AdminSidebar = () => {
                                href="#">
                                 <i className={"bi bi-house-fill"}></i>
 
-                                Dashboard
+                                Home
                             </a>
                         </li>
                         <li className="nav-item">
-                            <a className="nav-link d-flex align-items-center gap-2" href="#">
+                            <a className="nav-link d-flex align-items-center gap-2" href="/admin/category">
                                 <i className={"bi bi-file-earmark"}></i>
-                                Orders
+                                Category
                             </a>
                         </li>
                         <li className="nav-item">
-                            <a className="nav-link d-flex align-items-center gap-2" href="#">
+                            <a className="nav-link d-flex align-items-center gap-2" href="/admin/products">
                                 <i className={"bi bi-cart"}></i>
                                 Products
                             </a>
@@ -57,7 +78,10 @@ const AdminSidebar = () => {
                         <li className="nav-item">
                             <a className="nav-link d-flex align-items-center gap-2" href="#">
                                 <i className={"bi bi-door-closed"}></i>
-                                Sign out
+                                <Link className="nav-link" aria-current="page" to="/login"
+                                    onClick={onClickLogout}>
+                                    Sign out  
+                                     </Link>
                             </a>
                         </li>
                     </ul>
@@ -71,3 +95,7 @@ const AdminSidebar = () => {
 }
 
 export default AdminSidebar;
+
+function dispatch(arg0: { type: any; }) {
+    throw new Error("Function not implemented.");
+}

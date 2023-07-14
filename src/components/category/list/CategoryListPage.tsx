@@ -37,10 +37,10 @@ const CategoryListPage = () => {
       <td>
         {category.name}</td>
     
- <td> <img src={`${APP_ENV.BASE_URL}storage/${category.photo}`} width={100} /> </td>
+ <td> <img src={`${APP_ENV.BASE_URL}uploads/category/50_${category.photo}`} width={100} /> </td>
     
       <td>{category.description}</td>
-      <td> <Link to={`/category/edit/${category.id}`}   className="btn btn-danger">Редагувати</Link>
+      <td> <Link to={`/admin/category/edit/${category.id}`}   className="btn btn-danger">Редагувати</Link>
          <button  onClick={()=>handleDelete(category)}  className="btn btn-dark">
           Видалити
         </button></td>
@@ -60,7 +60,7 @@ const CategoryListPage = () => {
   return (
     <>
       <h1 className="text-center">Список категорій</h1>
-      <Link to="/category/create" className="btn btn-success">Додати</Link>
+      <Link to="/admin/category/create" className="btn btn-success">Додати</Link>
       <table className="table">
         <thead>
           <tr>
